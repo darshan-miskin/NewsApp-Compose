@@ -11,6 +11,7 @@ val secretProperties = Properties()
 secretProperties.load(FileInputStream(secretPropertiesFile))
 
 val apiKey = secretProperties["api_key"]
+val baseUrl = secretProperties["base_url"]
 
 
 android {
@@ -43,6 +44,7 @@ android {
 
         defaultConfig {
             buildConfigField("String", "API_KEY", "\"$apiKey\"")
+            buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
         }
     }
     compileOptions {
