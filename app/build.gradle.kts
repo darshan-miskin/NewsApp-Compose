@@ -1,10 +1,22 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
-//    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.devtools.ksp)
 }
 
+//val secretPropertiesFile = rootProject.file("secrets.properties")
+//val secretProperties = Properties()
+//secretProperties.load(FileInputStream(secretPropertiesFile))
+
+//val apiKey = secretProperties["api_key"]
+
+
 android {
+//    buildFeatures{
+//        buildConfig = true
+//    }
     namespace = "com.darshanmiskin.newsapp"
     compileSdk {
         version = release(36)
@@ -28,6 +40,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+
+//        defaultConfig {
+//            buildConfigField("String", "API_KEY", "\"$apiKey\"")
+//        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -45,7 +61,6 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
-    implementation(libs.lifecycle.extensions)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.dagger)
