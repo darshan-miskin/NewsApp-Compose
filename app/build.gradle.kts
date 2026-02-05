@@ -6,17 +6,17 @@ plugins {
     alias(libs.plugins.devtools.ksp)
 }
 
-//val secretPropertiesFile = rootProject.file("secrets.properties")
-//val secretProperties = Properties()
-//secretProperties.load(FileInputStream(secretPropertiesFile))
+val secretPropertiesFile = rootProject.file("secrets.properties")
+val secretProperties = Properties()
+secretProperties.load(FileInputStream(secretPropertiesFile))
 
-//val apiKey = secretProperties["api_key"]
+val apiKey = secretProperties["api_key"]
 
 
 android {
-//    buildFeatures{
-//        buildConfig = true
-//    }
+    buildFeatures{
+        buildConfig = true
+    }
     namespace = "com.darshanmiskin.newsapp"
     compileSdk {
         version = release(36)
@@ -41,9 +41,9 @@ android {
             )
         }
 
-//        defaultConfig {
-//            buildConfigField("String", "API_KEY", "\"$apiKey\"")
-//        }
+        defaultConfig {
+            buildConfigField("String", "API_KEY", "\"$apiKey\"")
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
