@@ -1,4 +1,4 @@
-package com.darshanmiskin.newsapp.utils
+package com.darshanmiskin.newsapp.data.local
 
 import com.darshanmiskin.newsapp.data.model.local.Country
 
