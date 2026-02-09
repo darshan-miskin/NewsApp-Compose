@@ -1,4 +1,4 @@
-package com.darshanmiskin.newsapp.data.model
+package com.darshanmiskin.newsapp.data.model.network
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
