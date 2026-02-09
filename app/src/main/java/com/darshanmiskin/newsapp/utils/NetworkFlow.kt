@@ -5,8 +5,9 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import retrofit2.Response
 
-fun <T> Response<T>.callApi(api: Response<T>) = flow{
+fun <T> Response<T>.callApi() = flow {
     emit(Loading)
+    val api = this@callApi
     try {
         if (api.isSuccessful)
             emit(Success(api.body()))
