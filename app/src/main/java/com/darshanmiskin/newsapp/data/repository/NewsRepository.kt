@@ -8,11 +8,24 @@ class NewsRepository @Inject constructor(val newsService: NetworkService) {
 
     fun getTopHeadlines() = newsService.topHeadlines("us").callApi()
 
-    fun getTopHeadlinesBySource(source: String) = newsService.topHeadlines(source = source).callApi()
+    fun getTopHeadlinesBy(
+        source: String? = null,
+        country: String? = null,
+        language: String? = null
+    ) = newsService.topHeadlines(
+        source = source,
+        country = country,
+        language = language
+    ).callApi()
 
-    fun getTopHeadlinesByCountry(country: String) = newsService.topHeadlines(country = country).callApi()
-
-    fun getTopHeadlinesByLanguage(language: String) = newsService.topHeadlines(language = language).callApi()
+//    fun getTopHeadlinesBySource(source: String) =
+//        newsService.topHeadlines(source = source).callApi()
+//
+//    fun getTopHeadlinesByCountry(country: String) =
+//        newsService.topHeadlines(country = country).callApi()
+//
+//    fun getTopHeadlinesByLanguage(language: String) =
+//        newsService.topHeadlines(language = language).callApi()
 
     fun getSources() = newsService.sources().callApi()
 
