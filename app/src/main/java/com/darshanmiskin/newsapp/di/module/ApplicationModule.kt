@@ -2,11 +2,13 @@ package com.darshanmiskin.newsapp.di.module
 
 import android.content.Context
 import com.darshanmiskin.newsapp.NewsApplication
+import com.darshanmiskin.newsapp.data.api.HeaderInterceptor
 import com.darshanmiskin.newsapp.data.api.NetworkService
 import com.darshanmiskin.newsapp.di.ApplicationContext
 import com.darshanmiskin.newsapp.di.BaseUrl
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -28,11 +30,17 @@ class ApplicationModule(private val application: NewsApplication, private val ba
 
     @Singleton
     @Provides
+    fun providesOkHttpClient() = OkHttpClient.Builder().addInterceptor(HeaderInterceptor()).build()
+
+    @Singleton
+    @Provides
     fun providesRetrofit(
         @BaseUrl baseUrl: String,
-        gsonConverterFactory: GsonConverterFactory
+        gsonConverterFactory: GsonConverterFactory,
+        okHttpClient: OkHttpClient
     ): Retrofit {
-        return Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(gsonConverterFactory).build()
+        return Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient)
+            .addConverterFactory(gsonConverterFactory).build()
     }
 
     @Singleton
