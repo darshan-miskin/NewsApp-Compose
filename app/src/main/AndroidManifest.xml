@@ -13,8 +13,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NewsApp">
         <activity
-            android:name=".ui.MainActivity"
-            android:exported="true" >
+            android:name=".ui.topheadlines.TopHeadlinesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NewsApp" />
+        <activity
+            android:name=".ui.newssources.NewsSourceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.languages.LanguagesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.countries.CountriesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

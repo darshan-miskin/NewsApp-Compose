@@ -15,9 +15,6 @@ val baseUrl = secretProperties["base_url"]
 
 
 android {
-    buildFeatures{
-        buildConfig = true
-    }
     namespace = "com.darshanmiskin.newsapp"
     compileSdk {
         version = release(36)
@@ -50,6 +47,12 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    buildFeatures{
+        buildConfig = true
+        viewBinding = true
+        dataBinding = true
     }
 }
 
