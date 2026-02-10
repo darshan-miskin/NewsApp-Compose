@@ -10,6 +10,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
+import kotlin.random.Random
 
 class NewsRepository @Inject constructor(val newsService: NetworkService) {
 
@@ -25,17 +26,18 @@ class NewsRepository @Inject constructor(val newsService: NetworkService) {
 
     fun getCountries() = flow {
         emit(UiState.Loading)
-        delay(100)
+        delay(Random.nextLong(200, 800))
         emit(UiState.Success(countriesList))
     }.flowOn(Dispatchers.IO)
 
     fun getLanguages() = flow {
         emit(UiState.Loading)
-        delay(100)
+        delay(Random.nextLong(200, 800))
         emit(UiState.Success(languagesList))
     }.flowOn(Dispatchers.IO)
 
     suspend fun getSources() = newsService.sources().callApi()
 
-    suspend fun getSearchResults(searchQuery: String) = newsService.everything(searchQuery).callApi()
+    suspend fun getSearchResults(searchQuery: String) =
+        newsService.everything(searchQuery).callApi()
 }
