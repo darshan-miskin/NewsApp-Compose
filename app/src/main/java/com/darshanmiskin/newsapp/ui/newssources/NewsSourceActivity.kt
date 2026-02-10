@@ -36,7 +36,8 @@ class NewsSourceActivity : BaseActivity<ActivityNewsSourceBinding>() {
         val layoutProgress = LayoutLoadingBinding.bind(binding.root)
         val adapter = SourcesAdapter {
             val intent = TopHeadlinesActivity.createIntent(
-                TopHeadlinesActivity.Filter.SOURCE
+                TopHeadlinesActivity.Filter.SOURCE,
+                it
             )
             startActivity(TopHeadlinesActivity::class.java, intent)
         }

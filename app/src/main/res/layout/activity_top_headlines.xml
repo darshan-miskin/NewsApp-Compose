@@ -13,11 +13,18 @@
         android:layout_height="match_parent"
         tools:context=".ui.topheadlines.TopHeadlinesActivity">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <include
+            android:id="@+id/layout_progress"
+            layout="@layout/layout_loading"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_top_headlines"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Top Headlines"/>
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            tools:listitem="@layout/layout_article"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

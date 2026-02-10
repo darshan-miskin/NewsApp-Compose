@@ -10,11 +10,17 @@ import com.darshanmiskin.newsapp.ui.base.ViewModelFactory
 import com.darshanmiskin.newsapp.ui.countries.CountriesViewModel
 import com.darshanmiskin.newsapp.ui.languages.LanguagesViewModel
 import com.darshanmiskin.newsapp.ui.newssources.NewsSourceViewModel
+import com.darshanmiskin.newsapp.ui.topheadlines.TopHeadlineViewModel
+import com.darshanmiskin.newsapp.ui.topheadlines.TopHeadlinesActivity
 import dagger.Module
 import dagger.Provides
 
 @Module
-class ActivityModule(private val activity: AppCompatActivity) {
+class ActivityModule(
+    private val activity: AppCompatActivity,
+    private val filter: TopHeadlinesActivity.Filter = TopHeadlinesActivity.Filter.TOP_HEADLINES,
+    private val value: String = "us"
+) {
 
     @ActivityContext
     @Provides
@@ -49,5 +55,12 @@ class ActivityModule(private val activity: AppCompatActivity) {
                 NewsSourceViewModel(repository)
             }
         )[NewsSourceViewModel::class.java]
+    }
+
+    @Provides
+    fun providesTopHeadlinesViewModel(repository: NewsRepository): TopHeadlineViewModel {
+        return ViewModelProvider(activity, ViewModelFactory(TopHeadlineViewModel::class.java) {
+            TopHeadlineViewModel(repository, filter, value)
+        })[TopHeadlineViewModel::class.java]
     }
 }

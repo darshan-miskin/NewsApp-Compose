@@ -5,6 +5,7 @@ import com.darshanmiskin.newsapp.di.module.ActivityModule
 import com.darshanmiskin.newsapp.ui.countries.CountriesActivity
 import com.darshanmiskin.newsapp.ui.languages.LanguagesActivity
 import com.darshanmiskin.newsapp.ui.newssources.NewsSourceActivity
+import com.darshanmiskin.newsapp.ui.topheadlines.TopHeadlinesActivity
 import dagger.Component
 
 @ActivityScope
@@ -12,6 +13,7 @@ import dagger.Component
 interface ActivityComponent {
     fun inject(activity: CountriesActivity)
     fun inject(activity: LanguagesActivity)
-
     fun inject(activity: NewsSourceActivity)
+
+    fun inject(activity: TopHeadlinesActivity)
 }

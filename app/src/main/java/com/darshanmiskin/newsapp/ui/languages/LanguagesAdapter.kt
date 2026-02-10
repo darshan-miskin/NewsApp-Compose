@@ -12,7 +12,7 @@ import com.darshanmiskin.newsapp.data.model.local.Language
 import com.darshanmiskin.newsapp.data.model.local.LanguageDiffUtil
 import com.darshanmiskin.newsapp.databinding.LayoutNamesListBinding
 
-class LanguagesAdapter(private val onClick: () -> Unit) :
+class LanguagesAdapter(private val onClick: (value: String) -> Unit) :
     ListAdapter<Language, LanguagesAdapter.LanguagesHolder>(
         LanguageDiffUtil()
     ) {
@@ -45,7 +45,7 @@ class LanguagesAdapter(private val onClick: () -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.setOnClickListener {
-                onClick()
+                onClick(getItem(absoluteAdapterPosition).code)
             }
         }
     }

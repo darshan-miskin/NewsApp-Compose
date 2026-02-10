@@ -3,7 +3,8 @@ import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.devtools.ksp)
+//    alias(libs.plugins.devtools.ksp)
+    alias(libs.plugins.legacy.kapt)
 }
 
 val secretPropertiesFile = rootProject.file("secrets.properties")
@@ -69,7 +70,7 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.dagger)
-    ksp(libs.dagger.compiler)
+    kapt(libs.dagger.compiler)
     implementation(libs.browser)
 
     testImplementation(libs.junit)

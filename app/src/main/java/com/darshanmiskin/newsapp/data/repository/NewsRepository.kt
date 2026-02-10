@@ -15,7 +15,7 @@ import kotlin.random.Random
 class NewsRepository @Inject constructor(val newsService: NetworkService) {
 
     suspend fun getTopHeadlinesBy(
-        source: String = "us",
+        source: String? = null,
         country: String? = null,
         language: String? = null
     ) = newsService.topHeadlines(

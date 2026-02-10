@@ -12,7 +12,7 @@ import com.darshanmiskin.newsapp.data.model.local.Country
 import com.darshanmiskin.newsapp.data.model.local.CountryDiffUtil
 import com.darshanmiskin.newsapp.databinding.LayoutNamesListBinding
 
-class CountriesAdapter(private val onClick:() -> Unit) : ListAdapter<Country, CountriesAdapter.CountriesHolder>(CountryDiffUtil()) {
+class CountriesAdapter(private val onClick:(value: String) -> Unit) : ListAdapter<Country, CountriesAdapter.CountriesHolder>(CountryDiffUtil()) {
 
     private lateinit var context: Context
     override fun onCreateViewHolder(
@@ -41,7 +41,7 @@ class CountriesAdapter(private val onClick:() -> Unit) : ListAdapter<Country, Co
         RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.setOnClickListener {
-                onClick()
+                onClick(getItem(absoluteAdapterPosition).code)
             }
         }
     }

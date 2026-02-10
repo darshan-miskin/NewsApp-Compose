@@ -12,7 +12,7 @@ import com.darshanmiskin.newsapp.data.model.network.Source
 import com.darshanmiskin.newsapp.data.model.network.SourceDiffUtil
 import com.darshanmiskin.newsapp.databinding.LayoutNamesListBinding
 
-class SourcesAdapter(private val onClick: () -> Unit) :
+class SourcesAdapter(private val onClick: (value: String) -> Unit) :
     ListAdapter<Source, SourcesAdapter.SourcesHolder>(
         SourceDiffUtil()
     ) {
@@ -45,7 +45,7 @@ class SourcesAdapter(private val onClick: () -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.setOnClickListener {
-                onClick()
+                onClick(getItem(absoluteAdapterPosition).id)
             }
         }
     }

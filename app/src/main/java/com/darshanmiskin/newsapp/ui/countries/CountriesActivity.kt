@@ -37,7 +37,8 @@ class CountriesActivity : BaseActivity<ActivityCountriesBinding>() {
         val layoutProgress = LayoutLoadingBinding.bind(binding.root)
         val adapter = CountriesAdapter {
             val intent = TopHeadlinesActivity.createIntent(
-                TopHeadlinesActivity.Filter.COUNTRY
+                TopHeadlinesActivity.Filter.COUNTRY,
+                it
             )
             startActivity(TopHeadlinesActivity::class.java, intent)
         }

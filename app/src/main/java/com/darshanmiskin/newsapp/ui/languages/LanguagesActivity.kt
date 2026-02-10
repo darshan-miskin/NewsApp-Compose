@@ -36,7 +36,7 @@ class LanguagesActivity : BaseActivity<ActivityLanguagesBinding>() {
         val layoutProgress = LayoutLoadingBinding.bind(binding.root)
 
         val adapter = LanguagesAdapter{
-            val intent = TopHeadlinesActivity.createIntent(TopHeadlinesActivity.Filter.LANGUAGE)
+            val intent = TopHeadlinesActivity.createIntent(TopHeadlinesActivity.Filter.LANGUAGE, it)
             startActivity(TopHeadlinesActivity::class.java, intent)
         }
         binding.rvCountries.adapter = adapter
