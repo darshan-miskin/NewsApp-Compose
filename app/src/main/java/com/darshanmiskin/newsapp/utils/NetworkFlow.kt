@@ -15,7 +15,7 @@ fun <Resp, Data> Response<Resp>.callApi(
         val api = this@callApi
         try {
             if (api.isSuccessful && api.body() != null) {
-                UiState.Success(validateResponse(api.body()!!, this))
+                validateResponse(api.body()!!, this)
             } else
                 emit(UiState.Error(api.errorBody().toString(), code = api.code().toString()))
         } catch (e: Exception) {
