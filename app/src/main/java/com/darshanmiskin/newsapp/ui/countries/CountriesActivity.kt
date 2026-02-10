@@ -2,7 +2,9 @@ package com.darshanmiskin.newsapp.ui.countries
 
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.darshanmiskin.newsapp.NewsApplication
 import com.darshanmiskin.newsapp.R
 import com.darshanmiskin.newsapp.data.model.local.Country
@@ -42,24 +44,27 @@ class CountriesActivity : BaseActivity<ActivityCountriesBinding>() {
         binding.rvCountries.adapter = adapter
 
         lifecycleScope.launch {
-            viewModel.flow.collect {
-                when (it) {
-                    is UiState.Error -> {
-                        binding.rvCountries.gone()
-                        layoutProgress.cProgress.gone()
-                    }
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.flow.collect {
+                    when (it) {
+                        is UiState.Error -> {
+                            binding.rvCountries.gone()
+                            layoutProgress.cProgress.gone()
+                        }
 
-                    UiState.Loading -> {
-                        binding.rvCountries.gone()
-                        layoutProgress.cProgress.visible()
-                    }
+                        UiState.Loading -> {
+                            binding.rvCountries.gone()
+                            layoutProgress.cProgress.visible()
+                        }
 
-                    is UiState.Success<ArrayList<Country>> -> {
-                        binding.rvCountries.visible()
-                        layoutProgress.cProgress.gone()
-                        adapter.submitList(it.data)
+                        is UiState.Success<ArrayList<Country>> -> {
+                            binding.rvCountries.visible()
+                            layoutProgress.cProgress.gone()
+                            adapter.submitList(it.data)
+                        }
                     }
                 }
+
             }
         }
     }
