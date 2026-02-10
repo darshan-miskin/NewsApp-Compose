@@ -3,9 +3,9 @@ import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 @Keep
-data class ArticlesListResponse(
+data class ArticlesResponse(
     @SerializedName("articles")
-    val articles: List<Article>,
+    val articles: ArrayList<Article>,
     @SerializedName("status")
     val status: String,
     @SerializedName("totalResults")

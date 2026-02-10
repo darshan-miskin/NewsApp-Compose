@@ -22,7 +22,12 @@ class NewsRepository @Inject constructor(val newsService: NetworkService) {
         source = source,
         country = country,
         language = language
-    ).callApi()
+    ).callApi { response, flow ->
+        if (response.status.lowercase() == "ok")
+            flow.emit(UiState.Success(response.articles))
+        else
+            flow.emit(UiState.Error(message = response.message, code = response.code))
+    }
 
     fun getCountries() = flow {
         emit(UiState.Loading)
@@ -36,8 +41,17 @@ class NewsRepository @Inject constructor(val newsService: NetworkService) {
         emit(UiState.Success(languagesList))
     }.flowOn(Dispatchers.IO)
 
-    suspend fun getSources() = newsService.sources().callApi()
+    suspend fun getSources() = newsService.sources().callApi { response, flow ->
+        if (response.status.lowercase() == "ok")
+            flow.emit(UiState.Success(response.sources))
+        else
+            flow.emit(UiState.Error(message = response.message, code = response.code))
+    }
 
-    suspend fun getSearchResults(searchQuery: String) =
-        newsService.everything(searchQuery).callApi()
+    suspend fun getSearchResults(searchQuery: String) = newsService.everything(searchQuery).callApi { response, flow ->
+            if (response.status.lowercase() == "ok")
+                flow.emit(UiState.Success(response.articles))
+            else
+                flow.emit(UiState.Error(message = response.message, code = response.code))
+        }
 }

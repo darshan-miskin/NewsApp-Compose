@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 @Keep
 data class SourcesResponse(
     @SerializedName("sources")
-    val sources: List<Source>,
+    val sources: ArrayList<Source>,
     @SerializedName("status")
     val status: String,
     @SerializedName("code")
