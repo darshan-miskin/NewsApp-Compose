@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class NewsRepository @Inject constructor(val newsService: NetworkService) {
 
-    fun getTopHeadlinesBy(
+    suspend fun getTopHeadlinesBy(
         source: String = "us",
         country: String? = null,
         language: String? = null
@@ -37,5 +37,5 @@ class NewsRepository @Inject constructor(val newsService: NetworkService) {
 
     suspend fun getSources() = newsService.sources().callApi()
 
-    fun getSearchResults(searchQuery: String) = newsService.everything(searchQuery).callApi()
+    suspend fun getSearchResults(searchQuery: String) = newsService.everything(searchQuery).callApi()
 }
