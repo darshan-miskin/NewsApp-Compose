@@ -42,6 +42,15 @@ class NewsSourceActivity : BaseActivity<ActivityNewsSourceBinding>() {
             startActivity(TopHeadlinesActivity::class.java, intent)
         }
 
+        layoutProgress.btnTryAgain.setOnClickListener {
+            binding.rvCountries.gone()
+            layoutProgress.cProgress.visible()
+            layoutProgress.tvMessage.gone()
+            layoutProgress.clError.gone()
+
+            viewModel.getNewsSources()
+        }
+
         binding.rvCountries.adapter = adapter
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
@@ -50,17 +59,26 @@ class NewsSourceActivity : BaseActivity<ActivityNewsSourceBinding>() {
                         is UiState.Error -> {
                             binding.rvCountries.gone()
                             layoutProgress.cProgress.gone()
+                            layoutProgress.tvMessage.gone()
+                            layoutProgress.clError.visible()
                         }
 
                         UiState.Loading -> {
                             binding.rvCountries.gone()
                             layoutProgress.cProgress.visible()
+                            layoutProgress.tvMessage.gone()
+                            layoutProgress.clError.gone()
                         }
 
                         is UiState.Success<ArrayList<Source>> -> {
                             binding.rvCountries.visible()
                             layoutProgress.cProgress.gone()
-                            adapter.submitList(it.data)
+                            layoutProgress.tvMessage.gone()
+                            layoutProgress.clError.gone()
+                            if (it.data.isEmpty())
+                                layoutProgress.tvMessage.visible()
+                            else
+                                adapter.submitList(it.data)
                         }
                     }
                 }

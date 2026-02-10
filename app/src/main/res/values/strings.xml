@@ -47,4 +47,8 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="no_data_found">No Data Found!</string>
+    <string name="oops">Oops!</string>
+    <string name="something_went_wrong_let_s_try_once_again">Something went wrong. Let\'s try once again!</string>
+    <string name="try_again">Try Again</string>
 </resources>

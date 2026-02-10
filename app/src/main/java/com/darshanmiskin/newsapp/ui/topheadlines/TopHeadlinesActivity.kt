@@ -48,6 +48,13 @@ class TopHeadlinesActivity : BaseActivity<ActivityTopHeadlinesBinding>() {
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         }
         binding.rvTopHeadlines.adapter = adapter
+        layoutProgress.btnTryAgain.setOnClickListener {
+            binding.rvTopHeadlines.gone()
+            layoutProgress.cProgress.visible()
+            layoutProgress.tvMessage.gone()
+            layoutProgress.clError.gone()
+            viewModel.getArticles()
+        }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
@@ -56,17 +63,26 @@ class TopHeadlinesActivity : BaseActivity<ActivityTopHeadlinesBinding>() {
                         is UiState.Error -> {
                             binding.rvTopHeadlines.gone()
                             layoutProgress.cProgress.gone()
+                            layoutProgress.tvMessage.gone()
+                            layoutProgress.clError.visible()
                         }
 
                         UiState.Loading -> {
                             binding.rvTopHeadlines.gone()
                             layoutProgress.cProgress.visible()
+                            layoutProgress.tvMessage.gone()
+                            layoutProgress.clError.gone()
                         }
 
                         is UiState.Success<ArrayList<Article>> -> {
                             binding.rvTopHeadlines.visible()
                             layoutProgress.cProgress.gone()
-                            adapter.submitList(it.data)
+                            layoutProgress.clError.gone()
+                            layoutProgress.tvMessage.gone()
+                            if (it.data.isEmpty())
+                                layoutProgress.tvMessage.visible()
+                            else
+                                adapter.submitList(it.data)
                         }
                     }
                 }
