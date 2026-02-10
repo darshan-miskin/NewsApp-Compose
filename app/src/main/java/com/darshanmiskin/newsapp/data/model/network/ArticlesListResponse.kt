@@ -9,5 +9,9 @@ data class ArticlesListResponse(
     @SerializedName("status")
     val status: String,
     @SerializedName("totalResults")
-    val totalResults: Int
+    val totalResults: Int,
+    @SerializedName("code")
+    val code: String,
+    @SerializedName("message")
+    val message: String
 )
