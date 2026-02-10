@@ -14,7 +14,7 @@ interface NetworkService {
     @GET("top-headlines")
     suspend fun topHeadlines(
         @Query("country") country: String? = null,
-        @Query("source") source: String? = null,
+        @Query("sources") source: String? = null,
         @Query("language") language: String? = null
     ): Response<ArticlesResponse>
 
