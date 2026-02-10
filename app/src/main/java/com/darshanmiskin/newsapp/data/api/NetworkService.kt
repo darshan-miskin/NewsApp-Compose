@@ -9,10 +9,10 @@ import retrofit2.http.Query
 interface NetworkService {
 
     @GET("everything")
-    fun everything(@Query("q") query: String): Response<ArticlesListResponse>
+    suspend fun everything(@Query("q") query: String): Response<ArticlesListResponse>
 
     @GET("top-headlines")
-    fun topHeadlines(
+    suspend fun topHeadlines(
         @Query("country") country: String? = null,
         @Query("source") source: String? = null,
         @Query("language") language: String? = null
