@@ -7,5 +7,9 @@ data class SourcesResponse(
     @SerializedName("sources")
     val sources: List<Source>,
     @SerializedName("status")
-    val status: String
+    val status: String,
+    @SerializedName("code")
+    val code: String,
+    @SerializedName("message")
+    val message: String
 )

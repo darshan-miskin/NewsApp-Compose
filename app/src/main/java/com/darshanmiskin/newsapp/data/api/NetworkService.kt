@@ -19,6 +19,6 @@ interface NetworkService {
     ): Response<ArticlesListResponse>
 
     @GET("top-headlines/sources")
-    fun sources(): Response<SourcesResponse>
+    suspend fun sources(): Response<SourcesResponse>
 
 }

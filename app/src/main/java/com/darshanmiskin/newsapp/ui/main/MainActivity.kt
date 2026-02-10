@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.darshanmiskin.newsapp.R
 import com.darshanmiskin.newsapp.databinding.ActivityMainBinding
-import com.darshanmiskin.newsapp.ui.BaseActivity
+import com.darshanmiskin.newsapp.ui.base.BaseActivity
 import com.darshanmiskin.newsapp.ui.countries.CountriesActivity
 import com.darshanmiskin.newsapp.ui.languages.LanguagesActivity
 import com.darshanmiskin.newsapp.ui.newssources.NewsSourceActivity

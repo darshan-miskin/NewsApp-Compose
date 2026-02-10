@@ -2,6 +2,7 @@ package com.darshanmiskin.newsapp.di.component
 
 import android.content.Context
 import com.darshanmiskin.newsapp.NewsApplication
+import com.darshanmiskin.newsapp.data.api.NetworkService
 import com.darshanmiskin.newsapp.di.ApplicationContext
 import com.darshanmiskin.newsapp.di.module.ApplicationModule
 import dagger.Component
@@ -15,4 +16,6 @@ interface ApplicationComponent {
 
     @ApplicationContext
     fun getContext(): Context
+
+    fun getNewsService(): NetworkService
 }

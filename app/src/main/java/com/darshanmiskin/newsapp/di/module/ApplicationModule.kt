@@ -39,7 +39,9 @@ class ApplicationModule(private val application: NewsApplication, private val ba
         gsonConverterFactory: GsonConverterFactory,
         okHttpClient: OkHttpClient
     ): Retrofit {
-        return Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient)
+        return Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .client(okHttpClient)
             .addConverterFactory(gsonConverterFactory).build()
     }
 

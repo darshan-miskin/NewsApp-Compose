@@ -1,5 +1,6 @@
-package com.darshanmiskin.newsapp.ui
+package com.darshanmiskin.newsapp.ui.base
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +10,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.darshanmiskin.newsapp.NewsApplication
 import com.darshanmiskin.newsapp.R
+import com.darshanmiskin.newsapp.di.component.ActivityComponent
+import com.darshanmiskin.newsapp.di.component.DaggerActivityComponent
+import com.darshanmiskin.newsapp.di.module.ActivityModule
 
 abstract class BaseActivity<VB : ViewDataBinding>() : AppCompatActivity() {
 
@@ -22,6 +27,8 @@ abstract class BaseActivity<VB : ViewDataBinding>() : AppCompatActivity() {
 
     protected lateinit var binding: VB
 
+//    protected lateinit var activityComponent: ActivityComponent
+
     @get:LayoutRes
     protected abstract val layoutId: Int
 
@@ -29,6 +36,7 @@ abstract class BaseActivity<VB : ViewDataBinding>() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, layoutId)
+        binding.lifecycleOwner = this
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -36,4 +44,14 @@ abstract class BaseActivity<VB : ViewDataBinding>() : AppCompatActivity() {
             insets
         }
     }
+
+//    fun <VB: ViewDataBinding, A: BaseActivity<VB>> injectDependencies(activity: A) {
+//        activityComponent =
+//            DaggerActivityComponent.builder()
+//                .applicationComponent((application as NewsApplication).applicationComponent)
+//                .activityModule(ActivityModule(activity))
+//                .build()
+//        activityComponent.inject(activity)
+//    }
+
 }
