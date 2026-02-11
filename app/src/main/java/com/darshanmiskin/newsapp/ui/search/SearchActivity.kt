@@ -3,7 +3,12 @@ package com.darshanmiskin.newsapp.ui.search
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.Toast
+import androidx.core.view.doOnAttach
+import androidx.core.view.doOnLayout
+import androidx.core.view.doOnNextLayout
+import androidx.core.view.doOnPreDraw
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -19,6 +24,7 @@ import com.darshanmiskin.newsapp.ui.base.UiState
 import com.darshanmiskin.newsapp.ui.topheadlines.TopHeadlinesAdapter
 import com.darshanmiskin.newsapp.utils.gone
 import com.darshanmiskin.newsapp.utils.visible
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -39,10 +45,6 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
         }
         binding.rvSearch.adapter = adapter
         layoutProgress.btnTryAgain.setOnClickListener {
-            binding.rvSearch.gone()
-            layoutProgress.cProgress.visible()
-            layoutProgress.tvMessage.gone()
-            layoutProgress.clError.gone()
             viewModel.search(viewModel.query.value)
         }
 
@@ -54,7 +56,8 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
                 start: Int,
                 count: Int,
                 after: Int
-            ) {}
+            ) {
+            }
 
             override fun onTextChanged(
                 s: CharSequence?,
@@ -78,7 +81,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
                         }
 
                         UiState.Loading -> {
-                            binding.rvSearch.gone()
+//                            binding.rvSearch.gone()
                             layoutProgress.cProgress.visible()
                             layoutProgress.tvMessage.gone()
                             layoutProgress.clError.gone()
@@ -88,11 +91,25 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
                             layoutProgress.cProgress.gone()
                             layoutProgress.clError.gone()
                             layoutProgress.tvMessage.gone()
-                            if (it.data.isEmpty())
+                            if (it.data.isEmpty()) {
+                                binding.rvSearch.gone()
                                 layoutProgress.tvMessage.visible()
+                            }
                             else
-                                adapter.submitList(it.data)
-                            binding.rvSearch.visible()
+                                adapter.submitList(it.data){
+//                                    Log.d("my_log", "submitList")
+                                    binding.rvSearch.doOnPreDraw {
+                                        binding.rvSearch.visible()
+//                                        Log.d("my_log", "doOnPreDraw")
+                                    }
+                                }
+
+//                            Log.d("my_log", "=========================================================")
+//                            binding.rvSearch.doOnLayout { Log.d("my_log", "doOnLayout") }
+//                            binding.rvSearch.doOnAttach { Log.d("my_log", "doOnAttach") }
+//                            binding.rvSearch.doOnNextLayout { Log.d("my_log", "doOnNextLayout") }
+////                            binding.rvSearch.doOnPreDraw { Log.d("my_log", "doOnPreDraw") }
+//                            Log.d("my_log", "=========================================================")
                         }
 
                         UiState.Initial -> {
