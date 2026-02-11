@@ -75,7 +75,6 @@ class TopHeadlinesActivity : BaseActivity<ActivityTopHeadlinesBinding>() {
                         }
 
                         is UiState.Success<ArrayList<Article>> -> {
-                            binding.rvTopHeadlines.visible()
                             layoutProgress.cProgress.gone()
                             layoutProgress.clError.gone()
                             layoutProgress.tvMessage.gone()
@@ -83,6 +82,7 @@ class TopHeadlinesActivity : BaseActivity<ActivityTopHeadlinesBinding>() {
                                 layoutProgress.tvMessage.visible()
                             else
                                 adapter.submitList(it.data)
+                            binding.rvTopHeadlines.visible()
                         }
                         UiState.Initial -> {
 

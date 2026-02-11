@@ -85,7 +85,6 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
                         }
 
                         is UiState.Success<ArrayList<Article>> -> {
-                            binding.rvSearch.visible()
                             layoutProgress.cProgress.gone()
                             layoutProgress.clError.gone()
                             layoutProgress.tvMessage.gone()
@@ -93,6 +92,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
                                 layoutProgress.tvMessage.visible()
                             else
                                 adapter.submitList(it.data)
+                            binding.rvSearch.visible()
                         }
 
                         UiState.Initial -> {

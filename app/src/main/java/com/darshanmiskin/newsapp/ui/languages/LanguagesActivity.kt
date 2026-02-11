@@ -56,10 +56,10 @@ class LanguagesActivity : BaseActivity<ActivityLanguagesBinding>() {
                         }
 
                         is UiState.Success<ArrayList<Language>> -> {
-                            binding.rvCountries.visible()
                             layoutProgress.cProgress.gone()
 
                             adapter.submitList(it.data)
+                            binding.rvCountries.visible()
                         }
                         UiState.Initial -> {
 

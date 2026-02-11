@@ -32,20 +32,6 @@ class SearchViewModel @Inject constructor(val newsRepository: NewsRepository) : 
             UiState.Initial
         )
 
-
-//    init {
-//        viewModelScope.launch(Dispatchers.IO) {
-//            _query.debounce(100L)
-//                .filter { it.isNotEmpty() }
-//                .flatMapLatest {
-//                    newsRepository.getSearchResults(it)
-//                }
-//                .collect {
-//                    _uiState.emit(it)
-//                }
-//        }
-//    }
-
     fun search(query: String) {
         _query.value = query
     }

@@ -71,7 +71,6 @@ class NewsSourceActivity : BaseActivity<ActivityNewsSourceBinding>() {
                         }
 
                         is UiState.Success<ArrayList<Source>> -> {
-                            binding.rvCountries.visible()
                             layoutProgress.cProgress.gone()
                             layoutProgress.tvMessage.gone()
                             layoutProgress.clError.gone()
@@ -79,6 +78,7 @@ class NewsSourceActivity : BaseActivity<ActivityNewsSourceBinding>() {
                                 layoutProgress.tvMessage.visible()
                             else
                                 adapter.submitList(it.data)
+                            binding.rvCountries.visible()
                         }
                         UiState.Initial -> {
 

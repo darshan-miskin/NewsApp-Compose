@@ -59,9 +59,9 @@ class CountriesActivity : BaseActivity<ActivityCountriesBinding>() {
                         }
 
                         is UiState.Success<ArrayList<Country>> -> {
-                            binding.rvCountries.visible()
                             layoutProgress.cProgress.gone()
                             adapter.submitList(it.data)
+                            binding.rvCountries.visible()
                         }
                         UiState.Initial -> {
 
