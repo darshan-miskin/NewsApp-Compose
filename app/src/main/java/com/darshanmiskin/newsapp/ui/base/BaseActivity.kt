@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -54,4 +55,7 @@ abstract class BaseActivity<VB : ViewDataBinding>() : AppCompatActivity() {
 //        activityComponent.inject(activity)
 //    }
 
+    fun hideKeyboard(){
+        (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(binding.root.windowToken, 0)
+    }
 }

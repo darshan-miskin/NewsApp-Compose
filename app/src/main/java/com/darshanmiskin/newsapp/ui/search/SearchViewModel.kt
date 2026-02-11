@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
@@ -22,8 +23,9 @@ class SearchViewModel @Inject constructor(val newsRepository: NewsRepository) : 
     val query = _query.asStateFlow()
 
     val uiState = _query
-        .debounce(400L)
         .filter { it.isNotEmpty() }
+        .distinctUntilChanged()
+        .debounce(800L)
         .flatMapLatest {
             newsRepository.getSearchResults(it)
         }.stateIn(
@@ -33,6 +35,6 @@ class SearchViewModel @Inject constructor(val newsRepository: NewsRepository) : 
         )
 
     fun search(query: String) {
-        _query.value = query
+        _query.value = query.trim()
     }
 }
