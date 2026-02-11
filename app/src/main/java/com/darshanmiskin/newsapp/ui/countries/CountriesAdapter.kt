@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.darshanmiskin.newsapp.R
 import com.darshanmiskin.newsapp.data.model.local.Country
-import com.darshanmiskin.newsapp.data.model.local.CountryDiffUtil
 import com.darshanmiskin.newsapp.databinding.LayoutNamesListBinding
+import com.darshanmiskin.newsapp.utils.CountryDiffUtil
 
-class CountriesAdapter(private val onClick:(value: String) -> Unit) : ListAdapter<Country, CountriesAdapter.CountriesHolder>(CountryDiffUtil()) {
+class CountriesAdapter(private val onClick:(value: String) -> Unit) : ListAdapter<Country, CountriesAdapter.CountriesHolder>(
+    CountryDiffUtil()
+) {
 
     private lateinit var context: Context
     override fun onCreateViewHolder(

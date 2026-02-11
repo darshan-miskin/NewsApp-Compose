@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.darshanmiskin.newsapp.R
 import com.darshanmiskin.newsapp.data.model.network.Source
-import com.darshanmiskin.newsapp.data.model.network.SourceDiffUtil
 import com.darshanmiskin.newsapp.databinding.LayoutNamesListBinding
+import com.darshanmiskin.newsapp.utils.SourceDiffUtil
 
 class SourcesAdapter(private val onClick: (value: String) -> Unit) :
     ListAdapter<Source, SourcesAdapter.SourcesHolder>(

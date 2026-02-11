@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.darshanmiskin.newsapp.R
 import com.darshanmiskin.newsapp.data.model.local.Language
-import com.darshanmiskin.newsapp.data.model.local.LanguageDiffUtil
 import com.darshanmiskin.newsapp.databinding.LayoutNamesListBinding
+import com.darshanmiskin.newsapp.utils.LanguageDiffUtil
 
 class LanguagesAdapter(private val onClick: (value: String) -> Unit) :
     ListAdapter<Language, LanguagesAdapter.LanguagesHolder>(

@@ -23,20 +23,3 @@ data class Article(
     @SerializedName("urlToImage")
     val urlToImage: String
 )
-
-class ArticleDiffUtil: DiffUtil.ItemCallback<Article>(){
-    override fun areItemsTheSame(
-        oldItem: Article,
-        newItem: Article
-    ): Boolean {
-        return oldItem === newItem
-    }
-
-    override fun areContentsTheSame(
-        oldItem: Article,
-        newItem: Article
-    ): Boolean {
-        return oldItem == newItem
-    }
-
-}

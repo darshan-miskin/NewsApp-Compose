@@ -8,12 +8,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.darshanmiskin.newsapp.R
 import com.darshanmiskin.newsapp.data.model.network.Article
-import com.darshanmiskin.newsapp.data.model.network.ArticleDiffUtil
 import com.darshanmiskin.newsapp.databinding.LayoutArticleBinding
+import com.darshanmiskin.newsapp.utils.ArticleDiffUtil
 
 class TopHeadlinesAdapter(val onClick: (String) -> Unit) :
-    ListAdapter<Article, TopHeadlinesAdapter.TopHeadlinesViewHolder>(ArticleDiffUtil())
-{
+    ListAdapter<Article, TopHeadlinesAdapter.TopHeadlinesViewHolder>(ArticleDiffUtil()) {
     private lateinit var context: Context
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int

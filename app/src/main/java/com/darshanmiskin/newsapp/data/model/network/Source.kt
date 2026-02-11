@@ -11,20 +11,3 @@ data class Source(
     @SerializedName("name")
     val name: String
 )
-
-class SourceDiffUtil : DiffUtil.ItemCallback<Source>(){
-    override fun areItemsTheSame(
-        oldItem: Source,
-        newItem: Source
-    ): Boolean {
-        return oldItem === newItem
-    }
-
-    override fun areContentsTheSame(
-        oldItem: Source,
-        newItem: Source
-    ): Boolean {
-        return oldItem == newItem
-    }
-
-}
