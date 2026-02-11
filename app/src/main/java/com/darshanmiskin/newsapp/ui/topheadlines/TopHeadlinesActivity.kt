@@ -3,6 +3,8 @@ package com.darshanmiskin.newsapp.ui.topheadlines
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.net.toUri
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -45,7 +47,7 @@ class TopHeadlinesActivity : BaseActivity<ActivityTopHeadlinesBinding>() {
 
         val layoutProgress = LayoutLoadingBinding.bind(binding.root)
         val adapter = TopHeadlinesAdapter{
-            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+            CustomTabsIntent.Builder().build().launchUrl(this, it.toUri())
         }
         binding.rvTopHeadlines.adapter = adapter
         layoutProgress.btnTryAgain.setOnClickListener {

@@ -1,10 +1,13 @@
 package com.darshanmiskin.newsapp.ui.search
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.view.doOnAttach
 import androidx.core.view.doOnLayout
 import androidx.core.view.doOnNextLayout
@@ -27,6 +30,7 @@ import com.darshanmiskin.newsapp.utils.visible
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import androidx.core.net.toUri
 
 class SearchActivity : BaseActivity<ActivitySearchBinding>() {
     override val layoutId: Int
@@ -41,7 +45,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
 
         val layoutProgress = LayoutLoadingBinding.bind(binding.root)
         val adapter = TopHeadlinesAdapter {
-            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+            CustomTabsIntent.Builder().build().launchUrl(this, it.toUri())
         }
         binding.rvSearch.adapter = adapter
         layoutProgress.btnTryAgain.setOnClickListener {
