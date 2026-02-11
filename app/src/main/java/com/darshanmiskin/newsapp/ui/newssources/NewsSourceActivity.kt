@@ -27,27 +27,22 @@ class NewsSourceActivity : BaseActivity<ActivityNewsSourceBinding>() {
     @Inject
     lateinit var viewModel: NewsSourceViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        inject()
-
-        title = ContextCompat.getString(this, R.string.news_sources)
-
-        val layoutProgress = LayoutLoadingBinding.bind(binding.root)
-        val adapter = SourcesAdapter {
+    private val adapter by lazy {
+        SourcesAdapter {
             val intent = TopHeadlinesActivity.createIntent(
                 TopHeadlinesActivity.Filter.SOURCE,
                 it
             )
             startActivity(TopHeadlinesActivity::class.java, intent)
         }
+    }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        inject()
+
+        title = ContextCompat.getString(this, R.string.news_sources)
         layoutProgress.btnTryAgain.setOnClickListener {
-            binding.rvCountries.gone()
-            layoutProgress.cProgress.visible()
-            layoutProgress.tvMessage.gone()
-            layoutProgress.clError.gone()
-
             viewModel.getNewsSources()
         }
 

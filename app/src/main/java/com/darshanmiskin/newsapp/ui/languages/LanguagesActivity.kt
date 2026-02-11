@@ -14,6 +14,7 @@ import com.darshanmiskin.newsapp.di.component.DaggerActivityComponent
 import com.darshanmiskin.newsapp.di.module.ActivityModule
 import com.darshanmiskin.newsapp.ui.base.BaseActivity
 import com.darshanmiskin.newsapp.ui.base.UiState
+import com.darshanmiskin.newsapp.ui.countries.CountriesAdapter
 import com.darshanmiskin.newsapp.ui.topheadlines.TopHeadlinesActivity
 import com.darshanmiskin.newsapp.utils.gone
 import com.darshanmiskin.newsapp.utils.visible
@@ -26,19 +27,18 @@ class LanguagesActivity : BaseActivity<ActivityLanguagesBinding>() {
 
     @Inject
     lateinit var viewModel: LanguagesViewModel
+    private val adapter by lazy {
+        LanguagesAdapter{
+            val intent = TopHeadlinesActivity.createIntent(TopHeadlinesActivity.Filter.LANGUAGE, it)
+            startActivity(TopHeadlinesActivity::class.java, intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         inject()
 
         title = ContextCompat.getString(this, R.string.languages)
-
-        val layoutProgress = LayoutLoadingBinding.bind(binding.root)
-
-        val adapter = LanguagesAdapter{
-            val intent = TopHeadlinesActivity.createIntent(TopHeadlinesActivity.Filter.LANGUAGE, it)
-            startActivity(TopHeadlinesActivity::class.java, intent)
-        }
         binding.rvCountries.adapter = adapter
 
         lifecycleScope.launch {

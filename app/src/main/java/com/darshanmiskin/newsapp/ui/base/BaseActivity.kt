@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.darshanmiskin.newsapp.NewsApplication
 import com.darshanmiskin.newsapp.R
+import com.darshanmiskin.newsapp.databinding.LayoutLoadingBinding
 import com.darshanmiskin.newsapp.di.component.ActivityComponent
 import com.darshanmiskin.newsapp.di.component.DaggerActivityComponent
 import com.darshanmiskin.newsapp.di.module.ActivityModule
@@ -27,6 +28,10 @@ abstract class BaseActivity<VB : ViewDataBinding>() : AppCompatActivity() {
     }
 
     protected lateinit var binding: VB
+
+    protected val layoutProgress by lazy {
+        LayoutLoadingBinding.bind(binding.root)
+    }
 
 //    protected lateinit var activityComponent: ActivityComponent
 

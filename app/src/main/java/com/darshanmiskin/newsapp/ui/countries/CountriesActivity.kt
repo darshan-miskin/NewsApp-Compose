@@ -26,6 +26,15 @@ class CountriesActivity : BaseActivity<ActivityCountriesBinding>() {
 
     @Inject
     lateinit var viewModel: CountriesViewModel
+    private val adapter by lazy {
+        CountriesAdapter {
+            val intent = TopHeadlinesActivity.createIntent(
+                TopHeadlinesActivity.Filter.COUNTRY,
+                it
+            )
+            startActivity(TopHeadlinesActivity::class.java, intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,15 +42,6 @@ class CountriesActivity : BaseActivity<ActivityCountriesBinding>() {
         inject()
 
         title = ContextCompat.getString(this, R.string.countries)
-
-        val layoutProgress = LayoutLoadingBinding.bind(binding.root)
-        val adapter = CountriesAdapter {
-            val intent = TopHeadlinesActivity.createIntent(
-                TopHeadlinesActivity.Filter.COUNTRY,
-                it
-            )
-            startActivity(TopHeadlinesActivity::class.java, intent)
-        }
         binding.rvCountries.adapter = adapter
 
         lifecycleScope.launch {

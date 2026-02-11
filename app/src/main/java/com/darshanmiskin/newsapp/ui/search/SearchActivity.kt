@@ -39,15 +39,16 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
 
     @Inject
     lateinit var viewModel: SearchViewModel
+    private val adapter by lazy {
+        TopHeadlinesAdapter {
+            CustomTabsIntent.Builder().build().launchUrl(this, it.toUri())
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         inject()
 
-        val layoutProgress = LayoutLoadingBinding.bind(binding.root)
-        val adapter = TopHeadlinesAdapter {
-            CustomTabsIntent.Builder().build().launchUrl(this, it.toUri())
-        }
         binding.rvSearch.adapter = adapter
         layoutProgress.btnTryAgain.setOnClickListener {
             viewModel.search(viewModel.query.value)

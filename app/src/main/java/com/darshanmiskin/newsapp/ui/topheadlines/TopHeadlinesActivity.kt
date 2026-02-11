@@ -38,23 +38,22 @@ class TopHeadlinesActivity : BaseActivity<ActivityTopHeadlinesBinding>() {
     override val layoutId: Int
         get() = R.layout.activity_top_headlines
 
+    val filter by lazy { Filter.valueOf(intent.extras?.getString("filter")?:Filter.TOP_HEADLINES.name) }
+    val value by lazy { intent.extras?.getString("value")?:"us" }
+
+    private val adapter by lazy{
+        TopHeadlinesAdapter{
+            CustomTabsIntent.Builder().build().launchUrl(this, it.toUri())
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val filter = Filter.valueOf(intent.extras?.getString("filter")?:Filter.TOP_HEADLINES.name)
-        val value = intent.extras?.getString("value")?:"us"
         title = "Type: $filter Value: $value"
         inject(filter, value)
 
-        val layoutProgress = LayoutLoadingBinding.bind(binding.root)
-        val adapter = TopHeadlinesAdapter{
-            CustomTabsIntent.Builder().build().launchUrl(this, it.toUri())
-        }
         binding.rvTopHeadlines.adapter = adapter
         layoutProgress.btnTryAgain.setOnClickListener {
-            binding.rvTopHeadlines.gone()
-            layoutProgress.cProgress.visible()
-            layoutProgress.tvMessage.gone()
-            layoutProgress.clError.gone()
             viewModel.getArticles()
         }
 
