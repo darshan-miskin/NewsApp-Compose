@@ -61,6 +61,9 @@ class LanguagesActivity : BaseActivity<ActivityLanguagesBinding>() {
 
                             adapter.submitList(it.data)
                         }
+                        UiState.Initial -> {
+
+                        }
                     }
                 }
             }

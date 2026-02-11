@@ -19,7 +19,7 @@
         <activity
             android:name=".ui.search.SearchActivity"
             android:exported="false"
-            android:theme="@style/Theme.NewsApp" />
+            android:theme="@style/Theme.NewsApp.NoActionBar" />
         <activity
             android:name=".ui.newssources.NewsSourceActivity"
             android:exported="false" />

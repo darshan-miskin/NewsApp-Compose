@@ -10,6 +10,7 @@ import com.darshanmiskin.newsapp.ui.base.ViewModelFactory
 import com.darshanmiskin.newsapp.ui.countries.CountriesViewModel
 import com.darshanmiskin.newsapp.ui.languages.LanguagesViewModel
 import com.darshanmiskin.newsapp.ui.newssources.NewsSourceViewModel
+import com.darshanmiskin.newsapp.ui.search.SearchViewModel
 import com.darshanmiskin.newsapp.ui.topheadlines.TopHeadlineViewModel
 import com.darshanmiskin.newsapp.ui.topheadlines.TopHeadlinesActivity
 import dagger.Module
@@ -62,5 +63,12 @@ class ActivityModule(
         return ViewModelProvider(activity, ViewModelFactory(TopHeadlineViewModel::class.java) {
             TopHeadlineViewModel(repository, filter, value)
         })[TopHeadlineViewModel::class.java]
+    }
+
+    @Provides
+    fun providesSearchViewModel(repository: NewsRepository): SearchViewModel {
+        return ViewModelProvider(activity, ViewModelFactory(SearchViewModel::class.java){
+            SearchViewModel(repository)
+        })[SearchViewModel::class.java]
     }
 }

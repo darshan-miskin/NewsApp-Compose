@@ -63,6 +63,9 @@ class CountriesActivity : BaseActivity<ActivityCountriesBinding>() {
                             layoutProgress.cProgress.gone()
                             adapter.submitList(it.data)
                         }
+                        UiState.Initial -> {
+
+                        }
                     }
                 }
 

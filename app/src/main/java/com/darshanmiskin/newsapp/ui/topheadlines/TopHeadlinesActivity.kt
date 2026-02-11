@@ -84,6 +84,9 @@ class TopHeadlinesActivity : BaseActivity<ActivityTopHeadlinesBinding>() {
                             else
                                 adapter.submitList(it.data)
                         }
+                        UiState.Initial -> {
+
+                        }
                     }
                 }
             }

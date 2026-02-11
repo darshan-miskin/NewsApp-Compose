@@ -80,6 +80,9 @@ class NewsSourceActivity : BaseActivity<ActivityNewsSourceBinding>() {
                             else
                                 adapter.submitList(it.data)
                         }
+                        UiState.Initial -> {
+
+                        }
                     }
                 }
             }

@@ -38,7 +38,7 @@ abstract class BaseActivity<VB : ViewDataBinding>() : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

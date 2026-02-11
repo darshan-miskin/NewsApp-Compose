@@ -7,16 +7,114 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.languages.LanguagesActivity">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Search"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_behavior="@string/searchbar_scrolling_view_behavior">
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.search.SearchBar
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/search" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.search.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/search"
+            android:layout_marginTop="0dp"
+            app:layout_anchor="@id/search_bar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <include
+                    android:id="@+id/layout_progress"
+                    layout="@layout/layout_loading"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="vertical"
+                    tools:listitem="@layout/layout_article" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.search.SearchView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/main"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:context=".ui.languages.LanguagesActivity">-->
+
+<!--        <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+<!--            android:id="@+id/cl_main"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--            <com.google.android.material.search.SearchBar-->
+<!--                android:id="@+id/search_bar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="@string/search"-->
+<!--                app:layout_constraintTop_toTopOf="parent"/>-->
+
+<!--            <androidx.core.widget.NestedScrollView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:layout_behavior="@string/searchbar_scrolling_view_behavior">-->
+
+<!--            </androidx.core.widget.NestedScrollView>-->
+
+<!--            <com.google.android.material.search.SearchView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent">-->
+
+<!--                <include-->
+<!--                    android:id="@+id/layout_progress"-->
+<!--                    layout="@layout/layout_loading"/>-->
+
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/rv_search"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:clipToPadding="false"-->
+<!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                    android:orientation="vertical"-->
+<!--                    tools:listitem="@layout/layout_article" />-->
+
+<!--            </com.google.android.material.search.SearchView>-->
+<!--        </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 </layout>
