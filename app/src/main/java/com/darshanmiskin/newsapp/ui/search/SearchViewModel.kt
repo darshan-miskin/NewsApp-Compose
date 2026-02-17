@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.darshanmiskin.newsapp.data.repository.NewsRepository
 import com.darshanmiskin.newsapp.ui.base.UiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,6 +17,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
+@HiltViewModel
 @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 class SearchViewModel @Inject constructor(val newsRepository: NewsRepository) : ViewModel() {
 

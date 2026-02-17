@@ -1,6 +1,5 @@
 package com.darshanmiskin.newsapp.ui.base
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -11,12 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.darshanmiskin.newsapp.NewsApplication
-import com.darshanmiskin.newsapp.R
 import com.darshanmiskin.newsapp.databinding.LayoutLoadingBinding
-import com.darshanmiskin.newsapp.di.component.ActivityComponent
-import com.darshanmiskin.newsapp.di.component.DaggerActivityComponent
-import com.darshanmiskin.newsapp.di.module.ActivityModule
 
 abstract class BaseActivity<VB : ViewDataBinding>() : AppCompatActivity() {
 
@@ -51,16 +45,10 @@ abstract class BaseActivity<VB : ViewDataBinding>() : AppCompatActivity() {
         }
     }
 
-//    fun <VB: ViewDataBinding, A: BaseActivity<VB>> injectDependencies(activity: A) {
-//        activityComponent =
-//            DaggerActivityComponent.builder()
-//                .applicationComponent((application as NewsApplication).applicationComponent)
-//                .activityModule(ActivityModule(activity))
-//                .build()
-//        activityComponent.inject(activity)
-//    }
-
-    fun hideKeyboard(){
-        (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(binding.root.windowToken, 0)
+    fun hideKeyboard() {
+        (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
+            binding.root.windowToken,
+            0
+        )
     }
 }

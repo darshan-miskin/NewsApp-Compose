@@ -1,28 +1,24 @@
 package com.darshanmiskin.newsapp.di.module
 
-import android.content.Context
-import com.darshanmiskin.newsapp.NewsApplication
+import com.darshanmiskin.newsapp.BuildConfig
 import com.darshanmiskin.newsapp.data.api.HeaderInterceptor
 import com.darshanmiskin.newsapp.data.api.NetworkService
-import com.darshanmiskin.newsapp.di.ApplicationContext
 import com.darshanmiskin.newsapp.di.BaseUrl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+@InstallIn(value = [SingletonComponent::class])
 @Module
-class ApplicationModule(private val application: NewsApplication, private val baseUrl: String) {
-
-    @ApplicationContext
-    @Provides
-    fun providesContext(): Context = application
-
+class ApplicationModule {
     @BaseUrl
     @Provides
-    fun providesBaseUrl(): String = baseUrl
+    fun providesBaseUrl(): String = BuildConfig.BASE_URL
 
     @Singleton
     @Provides
