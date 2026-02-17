@@ -31,8 +31,6 @@ class TopHeadlinesActivity : BaseActivity<ActivityTopHeadlinesBinding>() {
         COUNTRY, LANGUAGE, SOURCE, TOP_HEADLINES
     }
 
-    //    @Inject
-//    lateinit var filterFactory: FilterFactory
     private val viewModel: TopHeadlineViewModel by viewModels(
         extrasProducer = {
             defaultViewModelCreationExtras.withCreationCallback<TopHeadlineViewModel.FilterFactory> { factory ->
@@ -60,8 +58,6 @@ class TopHeadlinesActivity : BaseActivity<ActivityTopHeadlinesBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         title = "Type: $filter Value: $value"
-
-//        viewModel = filterFactory.create(filter, value)
 
         binding.rvTopHeadlines.adapter = adapter
         layoutProgress.btnTryAgain.setOnClickListener {

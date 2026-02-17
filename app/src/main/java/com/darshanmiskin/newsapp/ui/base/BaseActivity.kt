@@ -27,8 +27,6 @@ abstract class BaseActivity<VB : ViewDataBinding>() : AppCompatActivity() {
         LayoutLoadingBinding.bind(binding.root)
     }
 
-//    protected lateinit var activityComponent: ActivityComponent
-
     @get:LayoutRes
     protected abstract val layoutId: Int
 
