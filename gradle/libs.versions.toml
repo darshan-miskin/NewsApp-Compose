@@ -1,5 +1,5 @@
 [versions]
-agp = "9.0.0"
+agp = "9.0.1"
 coreKtx = "1.17.0"
 dagger = "2.59.1"
 glide = "5.0.5"
@@ -18,9 +18,11 @@ lifecycleRuntimeKtx = "2.10.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
-dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+#dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+#dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "dagger" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -36,6 +38,7 @@ lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", v
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtoolsKsp" }
+#devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtoolsKsp" }
 legacy-kapt = { id = "com.android.legacy-kapt", version.ref = "agp" }
+dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 

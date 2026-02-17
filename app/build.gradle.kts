@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.android.application)
 //    alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.legacy.kapt)
+    alias(libs.plugins.dagger.hilt)
 }
 
 val secretPropertiesFile = rootProject.file("secrets.properties")
@@ -69,9 +70,11 @@ dependencies {
     implementation(libs.retrofit.converter.gson)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.dagger)
-    kapt(libs.dagger.compiler)
+//    implementation(libs.dagger)
+//    kapt(libs.dagger.compiler)
     implementation(libs.browser)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
