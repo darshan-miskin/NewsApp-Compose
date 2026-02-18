@@ -9,17 +9,16 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.darshanmiskin.newsapp.R
 import com.darshanmiskin.newsapp.data.model.local.Country
 import com.darshanmiskin.newsapp.databinding.ActivityCountriesBinding
-import com.darshanmiskin.newsapp.ui.base.BaseActivity
+import com.darshanmiskin.newsapp.ui.base.BaseActivityXml
 import com.darshanmiskin.newsapp.ui.base.UiState
 import com.darshanmiskin.newsapp.ui.topheadlines.TopHeadlinesActivity
 import com.darshanmiskin.newsapp.utils.gone
 import com.darshanmiskin.newsapp.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class CountriesActivity : BaseActivity<ActivityCountriesBinding>() {
+class CountriesActivity : BaseActivityXml<ActivityCountriesBinding>() {
     override val layoutId: Int
         get() = R.layout.activity_countries
 

@@ -6,6 +6,7 @@ plugins {
 //    alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.legacy.kapt)
     alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.compose.compiler)
 }
 
 val secretPropertiesFile = rootProject.file("secrets.properties")
@@ -55,6 +56,7 @@ android {
         buildConfig = true
         viewBinding = true
         dataBinding = true
+        compose = true
     }
 }
 
@@ -74,7 +76,26 @@ dependencies {
 //    kapt(libs.dagger.compiler)
     implementation(libs.browser)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.runtime)
     kapt(libs.hilt.android.compiler)
+
+
+    val composeBom = platform("androidx.compose:compose-bom:2026.01.01")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
+    // Choose one of the following:
+    // Material Design 3
+    implementation(libs.androidx.material3)
+
+//    // Optional - Add window size utils
+//    implementation(libs.androidx.adaptive)
+    // Optional - Integration with activities
+    implementation(libs.androidx.activity.compose)
+//    // Optional - Integration with ViewModels
+//    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.ui.tooling.preview)
+    debugImplementation(libs.androidx.ui.tooling)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

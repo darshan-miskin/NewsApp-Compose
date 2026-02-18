@@ -1,4 +1,5 @@
 [versions]
+activityCompose = "1.12.4"
 agp = "9.0.1"
 coreKtx = "1.17.0"
 dagger = "2.59.1"
@@ -7,6 +8,7 @@ junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
 appcompat = "1.7.1"
+lifecycleViewmodelCompose = "2.10.0"
 material = "1.13.0"
 activity = "1.12.3"
 constraintlayout = "2.2.1"
@@ -15,11 +17,19 @@ devtoolsKsp = "2.3.4"
 browser = "1.9.0"
 lifecycleViewmodelKtx = "2.10.0"
 lifecycleRuntimeKtx = "2.10.0"
+kotlin = "2.3.10"
+runtime = "1.10.3"
 
 [libraries]
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-adaptive = { module = "androidx.compose.material3.adaptive:adaptive" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 #dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 #dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
+androidx-material3 = { module = "androidx.compose.material3:material3" }
+androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "dagger" }
@@ -35,10 +45,12 @@ retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", ve
 browser = { module = "androidx.browser:browser", version.ref = "browser" }
 lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 #devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtoolsKsp" }
 legacy-kapt = { id = "com.android.legacy-kapt", version.ref = "agp" }
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 

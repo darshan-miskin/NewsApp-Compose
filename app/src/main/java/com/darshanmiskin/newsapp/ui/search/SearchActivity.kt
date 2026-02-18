@@ -10,22 +10,19 @@ import androidx.core.view.doOnPreDraw
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.darshanmiskin.newsapp.NewsApplication
 import com.darshanmiskin.newsapp.R
 import com.darshanmiskin.newsapp.data.model.network.Article
 import com.darshanmiskin.newsapp.databinding.ActivitySearchBinding
-import com.darshanmiskin.newsapp.di.module.ActivityModule
-import com.darshanmiskin.newsapp.ui.base.BaseActivity
+import com.darshanmiskin.newsapp.ui.base.BaseActivityXml
 import com.darshanmiskin.newsapp.ui.base.UiState
 import com.darshanmiskin.newsapp.ui.topheadlines.TopHeadlinesAdapter
 import com.darshanmiskin.newsapp.utils.gone
 import com.darshanmiskin.newsapp.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class SearchActivity : BaseActivity<ActivitySearchBinding>() {
+class SearchActivity : BaseActivityXml<ActivitySearchBinding>() {
     override val layoutId: Int
         get() = R.layout.activity_search
 

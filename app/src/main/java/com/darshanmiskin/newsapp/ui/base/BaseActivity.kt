@@ -3,16 +3,20 @@ package com.darshanmiskin.newsapp.ui.base
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
-import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
-import com.darshanmiskin.newsapp.databinding.LayoutLoadingBinding
+import androidx.activity.ComponentActivity
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
+import com.darshanmiskin.newsapp.R
 
-abstract class BaseActivity<VB : ViewDataBinding>() : AppCompatActivity() {
+abstract class BaseActivity: ComponentActivity() {
 
     companion object {
         fun <T> Context.startActivity(clazz: Class<T>, intent: Intent? = null) =
@@ -20,33 +24,38 @@ abstract class BaseActivity<VB : ViewDataBinding>() : AppCompatActivity() {
                 intent?.let { thisIntent.putExtras(intent) }
             })
     }
-
-    protected lateinit var binding: VB
-
-    protected val layoutProgress by lazy {
-        LayoutLoadingBinding.bind(binding.root)
-    }
-
-    @get:LayoutRes
-    protected abstract val layoutId: Int
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
 
-        binding = DataBindingUtil.setContentView(this, layoutId)
-        binding.lifecycleOwner = this
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+    @Composable
+    fun Loading(retryClick: () -> Unit){
+        Box(modifier = Modifier.fillMaxWidth()) {
+            Column {
+                Error(retryClick)
+                NoDataFound()
+                CircularProgressIndicator()
+            }
         }
     }
 
-    fun hideKeyboard() {
-        (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
-            binding.root.windowToken,
-            0
-        )
+    @Composable
+    fun Error(retryClick: () -> Unit){
+        Text(text = getString(R.string.oops), fontSize = 24.sp)
+        Text(text = getString(R.string.something_went_wrong_let_s_try_once_again))
+        Button(onClick = retryClick) {
+            Text(text = getString(R.string.try_again))
+        }
+    }
+
+    @Composable
+    fun NoDataFound(){
+        Text(text = getString(R.string.no_data_found), fontSize = 24.sp)
+    }
+
+    @Preview
+    @Composable
+    fun LoadingPreview(){
+        Loading({})
     }
 }
