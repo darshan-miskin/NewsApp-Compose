@@ -10,10 +10,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.darshanmiskin.newsapp.ui.main.model.MenuItem
 import kotlin.collections.forEach
-
 
 @Composable
 fun MainScreen(mainMenu: List<MenuItem>, paddingValues: PaddingValues) {
@@ -29,7 +29,7 @@ fun MainScreen(mainMenu: List<MenuItem>, paddingValues: PaddingValues) {
                         .padding(vertical = 8.dp)
                 ) {
                     Text(
-                        text = menu.title
+                        text = stringResource(menu.title)
                     )
                 }
             }

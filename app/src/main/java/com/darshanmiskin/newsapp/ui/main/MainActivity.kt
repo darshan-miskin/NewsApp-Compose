@@ -17,23 +17,22 @@ import com.darshanmiskin.newsapp.ui.search.SearchActivity
 import com.darshanmiskin.newsapp.ui.topheadlines.TopHeadlinesActivity
 
 class MainActivity : BaseActivity() {
-
     private val mainMenu by lazy {
         listOf(
             MenuItem(
-                getString(R.string.top_headlines),
+                R.string.top_headlines,
                 { startActivity(TopHeadlinesActivity::class.java) }),
             MenuItem(
-                getString(R.string.news_sources),
+                R.string.news_sources,
                 { startActivity(NewsSourceActivity::class.java) }),
             MenuItem(
-                getString(R.string.countries),
+                R.string.countries,
                 { startActivity(CountriesActivity::class.java) }),
             MenuItem(
-                getString(R.string.languages),
+                R.string.languages,
                 { startActivity(LanguagesActivity::class.java) }),
             MenuItem(
-                getString(R.string.search),
+                R.string.search,
                 { startActivity(SearchActivity::class.java) }),
         )
     }
@@ -53,11 +52,11 @@ class MainActivity : BaseActivity() {
     @Composable
     fun PreviewMainScreen() {
         val menu = listOf(
-            MenuItem("1", {}),
-            MenuItem("2", {}),
-            MenuItem("3", {}),
-            MenuItem("4", {}),
-            MenuItem("5", {}),
+            MenuItem(R.string.top_headlines, {}),
+            MenuItem(R.string.news_sources, {}),
+            MenuItem(R.string.countries, {}),
+            MenuItem(R.string.languages, {}),
+            MenuItem(R.string.search, {}),
         )
         MainScreen(menu, PaddingValues())
     }
