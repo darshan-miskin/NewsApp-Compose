@@ -28,7 +28,7 @@ class TopHeadlineViewModel @AssistedInject constructor(
         ): TopHeadlineViewModel
     }
 
-    private val _flow = MutableStateFlow<UiState<ArrayList<Article>>>(UiState.Loading)
+    private val _flow = MutableStateFlow<UiState<List<Article>>>(UiState.Loading)
     val flow = _flow.asStateFlow()
 
     init {

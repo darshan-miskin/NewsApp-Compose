@@ -20,7 +20,6 @@ import javax.inject.Inject
 @HiltViewModel
 @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 class SearchViewModel @Inject constructor(val newsRepository: NewsRepository) : ViewModel() {
-
     private val _query = MutableStateFlow("")
     val query = _query.asStateFlow()
 

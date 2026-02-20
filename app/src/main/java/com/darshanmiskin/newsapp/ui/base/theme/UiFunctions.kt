@@ -1,6 +1,7 @@
 package com.darshanmiskin.newsapp.ui.base.theme
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -83,13 +85,13 @@ fun NoDataFound() {
 
 @Composable
 fun NewsItem(onClick: (String) -> Unit, article: Article) {
-    Spacer(Modifier.padding(4.dp))
-    ConstraintLayout {
+    ConstraintLayout(modifier = Modifier.clickable(onClick = { onClick(article.url) })) {
         val (image, title, source, desc, gradient) = createRefs()
         createHorizontalChain(title, source, chainStyle = ChainStyle.SpreadInside)
         AsyncImage(
-            model = article.url,
+            model = article.urlToImage,
             contentDescription = null,
+            contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(300.dp)
@@ -115,7 +117,7 @@ fun NewsItem(onClick: (String) -> Unit, article: Article) {
                 }
         )
         Text(
-            text = article.description,
+            text = article.description ?: "-",
             color = Color.White,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
@@ -127,7 +129,7 @@ fun NewsItem(onClick: (String) -> Unit, article: Article) {
                 }
         )
         Text(
-            text = article.title,
+            text = article.title ?: "-",
             color = Color.White,
             fontSize = 20.sp,
             maxLines = 1,
@@ -141,9 +143,10 @@ fun NewsItem(onClick: (String) -> Unit, article: Article) {
                 }
         )
         Text(
-            text = article.source.name,
+            text = article.source.name ?: "-",
             color = Color.White,
             maxLines = 1,
+            fontSize = 12.sp,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier
                 .requiredWidthIn(50.dp, 100.dp)
@@ -158,7 +161,12 @@ fun NewsItem(onClick: (String) -> Unit, article: Article) {
 }
 
 @Composable
-fun SimpleListItem(onClick: (String) -> Unit, code: String, name: String, backgroundColor: Color = Teal700) {
+fun SimpleListItem(
+    onClick: (String) -> Unit,
+    code: String,
+    name: String,
+    backgroundColor: Color = Teal700
+) {
     Spacer(Modifier.padding(4.dp))
     TextButton(
         { onClick(code) },
