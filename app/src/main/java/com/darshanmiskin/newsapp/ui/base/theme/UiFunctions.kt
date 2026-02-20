@@ -158,12 +158,12 @@ fun NewsItem(onClick: (String) -> Unit, article: Article) {
 }
 
 @Composable
-fun SimpleListItem(onClick: (String) -> Unit, code: String, name: String) {
+fun SimpleListItem(onClick: (String) -> Unit, code: String, name: String, backgroundColor: Color = Teal700) {
     Spacer(Modifier.padding(4.dp))
     TextButton(
         { onClick(code) },
         modifier = Modifier
-            .background(Teal700, shape = RoundedCornerShape(25))
+            .background(backgroundColor, shape = RoundedCornerShape(25))
             .fillMaxWidth(),
         shape = RoundedCornerShape(corner = CornerSize(15.dp))
     ) {

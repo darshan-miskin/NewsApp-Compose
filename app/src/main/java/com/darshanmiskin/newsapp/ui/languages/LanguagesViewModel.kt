@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LanguagesViewModel @Inject constructor(val newsRepository: NewsRepository): ViewModel() {
-    private val _flow = MutableStateFlow<UiState<ArrayList<Language>>>(UiState.Loading)
+    private val _flow = MutableStateFlow<UiState<List<Language>>>(UiState.Loading)
     val flow = _flow.asStateFlow()
 
     init {
