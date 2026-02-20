@@ -21,7 +21,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import com.darshanmiskin.newsapp.R
+import com.darshanmiskin.newsapp.data.model.network.Article
 
 
 @Composable
@@ -71,8 +73,11 @@ fun NoDataFound() {
 }
 
 @Composable
-fun NewsItem() {
+fun NewsItem(onClick: (String) -> Unit) {
+    Spacer(Modifier.padding(4.dp))
+    ConstraintLayout {
 
+    }
 }
 
 @Composable

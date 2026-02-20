@@ -72,18 +72,18 @@ dependencies {
     implementation(libs.retrofit.converter.gson)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.runtime.ktx)
-//    implementation(libs.dagger)
-//    kapt(libs.dagger.compiler)
     implementation(libs.browser)
     implementation(libs.hilt.android)
     implementation(libs.androidx.runtime)
     kapt(libs.hilt.android.compiler)
 
 
-    val composeBom = platform("androidx.compose:compose-bom:2026.01.01")
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+    val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
-
+    implementation(libs.androidx.constraintlayout.compose)
     // Choose one of the following:
     // Material Design 3
     implementation(libs.androidx.material3)
