@@ -15,8 +15,8 @@ fun <Resp, Data> toUiState(
 ) =
     flow {
         emit(UiState.Loading)
-        val api = apiCall()
         try {
+            val api = apiCall()
             if (api.isSuccessful && api.body() != null) {
                 validateResponse(api.body()!!, this)
             } else {

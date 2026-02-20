@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 
 abstract class BaseActivity : ComponentActivity() {
-
     companion object {
         fun <T> Context.startActivity(clazz: Class<T>, intent: Intent? = null) =
             this@startActivity.startActivity(Intent(this@startActivity, clazz).also { thisIntent ->
