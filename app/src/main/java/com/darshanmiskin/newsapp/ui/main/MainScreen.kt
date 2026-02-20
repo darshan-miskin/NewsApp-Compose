@@ -26,7 +26,7 @@ fun MainScreen(mainMenu: List<MenuItem>, paddingValues: PaddingValues) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f)
-                        .padding(vertical = 8.dp)
+                        .padding( 8.dp)
                 ) {
                     Text(
                         text = stringResource(menu.title)
