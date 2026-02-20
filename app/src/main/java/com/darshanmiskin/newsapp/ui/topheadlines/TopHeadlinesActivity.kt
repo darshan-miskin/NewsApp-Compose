@@ -70,9 +70,7 @@ class TopHeadlinesActivity : BaseActivity() {
                     },
                     content = { paddingValues ->
                         TopHeadLinesScreen(viewModel, paddingValues) {
-                            TopHeadlinesAdapter {
-                                CustomTabsIntent.Builder().build().launchUrl(this, it.toUri())
-                            }
+                            CustomTabsIntent.Builder().build().launchUrl(this, it.toUri())
                         }
                     }
                 )
