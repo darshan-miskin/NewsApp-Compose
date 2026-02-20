@@ -10,4 +10,6 @@
     <color name="card_countries">#FF9800</color>
     <color name="card_languages">#EC407A</color>
     <color name="card_sources">#9C27B0</color>
+    <color name="gradient_end_color">#3F000000</color>
+    <color name="gradient_start_color">#D0000000</color>
 </resources>
