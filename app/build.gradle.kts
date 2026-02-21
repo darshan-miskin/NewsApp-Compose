@@ -54,8 +54,6 @@ android {
 
     buildFeatures{
         buildConfig = true
-        viewBinding = true
-        dataBinding = true
         compose = true
     }
 }
@@ -64,28 +62,22 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
 
-    implementation(libs.glide)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.browser)
     implementation(libs.hilt.android)
-    implementation(libs.androidx.runtime)
     kapt(libs.hilt.android.compiler)
-
 
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
+    implementation(libs.androidx.runtime)
     implementation(libs.androidx.constraintlayout.compose)
-    // Choose one of the following:
-    // Material Design 3
     implementation(libs.androidx.material3)
 
 //    // Optional - Add window size utils
