@@ -26,7 +26,7 @@ class SearchViewModel @Inject constructor(val newsRepository: NewsRepository) : 
     val uiState = _query
         .filter { it.isNotEmpty() }
         .distinctUntilChanged()
-        .debounce(800L)
+        .debounce(1000L)
         .flatMapLatest {
             newsRepository.getSearchResults(it)
         }.stateIn(

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 @Keep
 data class ArticlesResponse(
     @SerializedName("articles")
-    val articles: ArrayList<Article>,
+    val articles: List<Article>,
     @SerializedName("status")
     val status: String,
     @SerializedName("totalResults")
