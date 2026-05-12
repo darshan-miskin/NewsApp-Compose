@@ -4,20 +4,10 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.net.toUri
-import androidx.navigation.NavHost
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
 import com.darshanmiskin.newsapp.R
 import com.darshanmiskin.newsapp.ui.base.BaseActivity
 import com.darshanmiskin.newsapp.ui.base.theme.NewsApplicationTheme
@@ -25,12 +15,10 @@ import com.darshanmiskin.newsapp.ui.countries.CountriesActivity
 import com.darshanmiskin.newsapp.ui.languages.LanguagesActivity
 import com.darshanmiskin.newsapp.ui.main.model.MenuItem
 import com.darshanmiskin.newsapp.ui.newssources.NewsSourceActivity
-import com.darshanmiskin.newsapp.ui.search.SearchActivity
 import com.darshanmiskin.newsapp.ui.search.SearchScreen
 import com.darshanmiskin.newsapp.ui.search.SearchViewModel
 import com.darshanmiskin.newsapp.ui.topheadlines.TopHeadLinesScreen
 import com.darshanmiskin.newsapp.ui.topheadlines.TopHeadlineViewModel
-import com.darshanmiskin.newsapp.ui.topheadlines.TopHeadlinesActivity
 import com.darshanmiskin.newsapp.ui.topheadlines.TopHeadlinesActivity.Filter
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.withCreationCallback
@@ -74,7 +62,7 @@ class MainActivity : BaseActivity() {
             NewsApplicationTheme {
                 MainScreen(mainMenu){ paddingValues, destination ->
                     when (destination) {
-                        Destination.TOPHEADLINES -> {
+                        Destination.TOP_HEADLINES -> {
                             TopHeadLinesScreen(viewModelTopHeadLines, paddingValues) { url ->
                                 CustomTabsIntent.Builder().build().launchUrl(this, url.toUri())
                             }

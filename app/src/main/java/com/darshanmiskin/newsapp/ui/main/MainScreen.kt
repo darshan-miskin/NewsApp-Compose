@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -31,7 +32,7 @@ enum class Destination(
     val icon: Int,
     val description: Int
 ) {
-    TOPHEADLINES(
+    TOP_HEADLINES(
         "top_headlines",
         R.string.top_headlines,
         android.R.drawable.ic_menu_today,
@@ -44,20 +45,20 @@ enum class Destination(
 @Composable
 fun MainScreen(mainMenu: List<MenuItem>, showScreen: @Composable (PaddingValues, Destination) -> Unit) {
     val navController = rememberNavController()
-    val startDestination = Destination.TOPHEADLINES
-    var selectedDestination by rememberSaveable { mutableStateOf(startDestination.ordinal) }
+    val startDestination = Destination.TOP_HEADLINES
+    var selectedDestination by rememberSaveable { mutableIntStateOf(startDestination.ordinal) }
     var showMenu by rememberSaveable { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    if (selectedDestination == Destination.TOPHEADLINES.ordinal) {
+                    if (selectedDestination == Destination.TOP_HEADLINES.ordinal) {
                         Text(stringResource(R.string.top_headlines))
                     }
                 },
                 actions = {
-                    if (selectedDestination == Destination.TOPHEADLINES.ordinal) {
+                    if (selectedDestination == Destination.TOP_HEADLINES.ordinal) {
                         IconButton(onClick = {
                             showMenu = true
                         }) {
