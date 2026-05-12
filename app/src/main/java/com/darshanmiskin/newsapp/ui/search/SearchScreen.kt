@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.darshanmiskin.newsapp.data.model.network.Article
 import com.darshanmiskin.newsapp.ui.base.UiState
@@ -79,7 +80,6 @@ fun SearchPage(
     Box(
         Modifier
             .fillMaxSize()
-            .padding(paddingValues)
     ) {
         SearchBar(
             modifier = Modifier

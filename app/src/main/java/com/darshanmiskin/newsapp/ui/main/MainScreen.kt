@@ -51,40 +51,40 @@ fun MainScreen(mainMenu: List<MenuItem>, showScreen: @Composable (PaddingValues,
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    if (selectedDestination == Destination.TOP_HEADLINES.ordinal) {
+            if (selectedDestination == Destination.TOP_HEADLINES.ordinal) {
+                TopAppBar(
+                    title = {
                         Text(stringResource(R.string.top_headlines))
-                    }
-                },
-                actions = {
-                    if (selectedDestination == Destination.TOP_HEADLINES.ordinal) {
-                        IconButton(onClick = {
-                            showMenu = true
-                        }) {
-                            Icon(
-                                painterResource(android.R.drawable.ic_menu_more),
-                                contentDescription = "More"
-                            )
-                        }
-                        DropdownMenu(
-                            expanded = showMenu,
-                            onDismissRequest = { showMenu = false }
-                        ) {
-                            mainMenu.forEach { menu ->
-                                DropdownMenuItem(
-                                    text = {
-                                        Text(stringResource(menu.title))
-                                    },
-                                    onClick = {
-                                        menu.listener.invoke()
-                                        showMenu = false
-                                    })
+                    },
+                    actions = {
+                        if (selectedDestination == Destination.TOP_HEADLINES.ordinal) {
+                            IconButton(onClick = {
+                                showMenu = true
+                            }) {
+                                Icon(
+                                    painterResource(android.R.drawable.ic_menu_more),
+                                    contentDescription = "More"
+                                )
+                            }
+                            DropdownMenu(
+                                expanded = showMenu,
+                                onDismissRequest = { showMenu = false }
+                            ) {
+                                mainMenu.forEach { menu ->
+                                    DropdownMenuItem(
+                                        text = {
+                                            Text(stringResource(menu.title))
+                                        },
+                                        onClick = {
+                                            menu.listener.invoke()
+                                            showMenu = false
+                                        })
+                                }
                             }
                         }
                     }
-                }
-            )
+                )
+            }
         },
         content = { paddingValues ->
             NavHost(navController = navController, startDestination = startDestination.route) {
