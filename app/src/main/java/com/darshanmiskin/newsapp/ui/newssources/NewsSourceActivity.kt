@@ -46,6 +46,7 @@ class NewsSourceActivity : BaseActivity() {
                                 it
                             )
                             startActivity(TopHeadlinesActivity::class.java, intent)
+                            finish()
                         }
                     }
                 )

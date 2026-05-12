@@ -79,6 +79,7 @@ dependencies {
     implementation(libs.androidx.runtime)
     implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
 
 //    // Optional - Add window size utils
 //    implementation(libs.androidx.adaptive)
