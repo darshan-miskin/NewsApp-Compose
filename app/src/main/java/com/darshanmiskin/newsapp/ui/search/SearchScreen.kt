@@ -80,6 +80,7 @@ fun SearchPage(
     Box(
         Modifier
             .fillMaxSize()
+//            .padding(paddingValues)
     ) {
         SearchBar(
             modifier = Modifier
