@@ -37,6 +37,7 @@ class CountriesActivity : BaseActivity() {
                             TopHeadlinesActivity.Filter.COUNTRY, it
                         )
                         startActivity(TopHeadlinesActivity::class.java, intent)
+                        finish()
                     })
                 })
             }
