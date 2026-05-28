@@ -43,7 +43,7 @@ enum class Destination(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(mainMenu: List<MenuItem>, showScreen: @Composable (PaddingValues, Destination) -> Unit) {
+fun MainApp(mainMenu: List<MenuItem>, showScreen: @Composable (PaddingValues, Destination) -> Unit) {
     val navController = rememberNavController()
     val startDestination = Destination.TOP_HEADLINES
     var selectedDestination by rememberSaveable { mutableIntStateOf(startDestination.ordinal) }

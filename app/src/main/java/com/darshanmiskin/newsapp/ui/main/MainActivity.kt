@@ -60,7 +60,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NewsApplicationTheme {
-                MainScreen(mainMenu){ paddingValues, destination ->
+                MainApp(mainMenu){ paddingValues, destination ->
                     when (destination) {
                         Destination.TOP_HEADLINES -> {
                             TopHeadLinesScreen(viewModelTopHeadLines, paddingValues) { url ->
@@ -84,7 +84,7 @@ class MainActivity : BaseActivity() {
 
     @Preview
     @Composable
-    fun PreviewMainScreen() {
+    fun PreviewMainApp() {
         val menu = listOf(
             MenuItem(R.string.top_headlines, {}),
             MenuItem(R.string.news_sources, {}),
@@ -92,6 +92,6 @@ class MainActivity : BaseActivity() {
             MenuItem(R.string.languages, {}),
             MenuItem(R.string.search, {}),
         )
-        MainScreen(menu){paddingValues, destination -> }
+        MainApp(menu){ paddingValues, destination -> }
     }
 }
